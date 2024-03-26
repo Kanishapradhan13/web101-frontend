@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .container input[type="text"],
+        .container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .container input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+        .container input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Login</h2>
+    <form action="#" method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" placeholder="Enter your username">
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password">
+
+        <input type="submit" id="submit" value="Login">
+    </form>
+</div>
+<script>
+    console.log('Script working...');
+    const email_element = document.getElementById('email');
+    const password_element = document.getElementById('password');
+    const submit_element_button = document.getElementById('submit');
+
+    // console.log('Email:', email_element);
+    // console.log('Password:', password_element);
+
+    submit_element_button.addEventListener('click', (event) => {
+        console.log('Button clicked...');
+        event.preventDefault();
+
+        const password = password_element.value;
+        const email = email_element.value;
+        
+        console.log('Email:', email);
+        console.log('Password:', password);
+        
+        const reqData = {
+            "identifier": email,
+            "password": password
+        }
+
+        const response = fetch('http://localhost:8085/auth', {
+            method : 'POST',
+            headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(reqData)
+                }).then((response) => {
+                    return response.json();
+                }).then((data) => {
+                    console.log('Data:', data)
+                    console.log('Token:', data.token)
+                    console.log('save token in browser local storage')
+
+                    localStorage.setItem('token', data.token);
+
+                    window.location.href = './protected.html';
+                }).catch((error) => {
+                    console.error('Error:', error);
+
+                });
+            });
+</script>
+</body>
+</html>
