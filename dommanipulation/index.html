@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation</title>
+</head>
+<body>
+    <h1> DOM Manipulation </h1>
+    <button id="red">red</button>
+    <button id="blue">blue</button>
+    
+    <script>
+        console.log('hello')
+
+        // Select the first "red" button
+        const redButton = document.getElementById('red');
+        // Select the "blue" button
+        const blueButton = document.getElementById('blue');
+
+        console.log(redButton)
+        console.log(blueButton)
+
+        // Add click event listeners
+        redButton.addEventListener('click', handleRedButtonClick);
+        blueButton.addEventListener('click', handleBlueButtonClick);
+
+        // Define event handler functions
+        function handleRedButtonClick() {
+        console.log('Red button clicked');
+        }
+
+        function handleBlueButtonClick() {
+        console.log('Blue button clicked');
+        }
+    </script>
+</body>
+</html>
