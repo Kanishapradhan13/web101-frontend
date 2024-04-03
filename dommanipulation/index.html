@@ -4,34 +4,97 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DOM Manipulation</title>
+    <style>
+        body {
+          transition: background-color 0.5s;
+        }
+
+        .textWhite{
+            color: white
+        }
+
+        .textPurple{
+            color: purple;
+        }
+    </style>
 </head>
 <body>
-    <h1> DOM Manipulation </h1>
+    
+    <h1 id="heading" class="textWhite"> DOM Manipulation </h1>
+
     <button id="red">red</button>
     <button id="blue">blue</button>
+    <br>
+    <br>
+    <button id="white">White</button>
+    <button id="purple">Purple</button>
+    <br>
+    <br>
+    <button id="surprise">Surprise me</button>
+    <button id="dontSurprise">Don't surprise me</button>
+    <p id="surpriseText" style="display: none;">You are surprised</p>
+
+
     
     <script>
         console.log('hello')
 
-        // Select the first "red" button
+        // Select the buttons
         const redButton = document.getElementById('red');
-        // Select the "blue" button
         const blueButton = document.getElementById('blue');
+        const whiteButton = document.getElementById('white');
+        const purpleButton = document.getElementById('purple');
+        const heading= document.getElementById('heading');
+        const surpriseButton = document.getElementById('surprise');
+        const dontSurpriseButton = document.getElementById('dontSurprise');
+        const surpriseText = document.getElementById('surpriseText');
+
 
         console.log(redButton)
         console.log(blueButton)
+        console.log(whiteButton)
+        console.log(purpleButton)
 
         // Add click event listeners
         redButton.addEventListener('click', handleRedButtonClick);
         blueButton.addEventListener('click', handleBlueButtonClick);
+        whiteButton.addEventListener('click', handleWhiteButtonClick);
+        purpleButton.addEventListener('click', handlePurpleButtonClick);
+        surpriseButton.addEventListener('click', handleSurpriseButtonClick);
+        dontSurpriseButton.addEventListener('click', handleDontSurpriseButtonClick);
+
 
         // Define event handler functions
         function handleRedButtonClick() {
-        console.log('Red button clicked');
+        console.log('Red button clicked');    
+        document.body.style.backgroundColor = 'red';
         }
 
         function handleBlueButtonClick() {
-        console.log('Blue button clicked');
+        console.log('Blue button clicked');    
+        document.body.style.backgroundColor = 'blue';
+        }
+
+        function handleWhiteButtonClick() {
+        console.log('White button clicked');
+        heading.classList.add('textWhite');
+        heading.classList.remove('textPurple');
+        }
+
+        function handlePurpleButtonClick() {
+        console.log('Purple button clicked');
+        heading.classList.add('textPurple');
+        heading.classList.remove('textWhite');
+        }
+
+        function handleSurpriseButtonClick() {
+        console.log('Surprise button clicked');
+        surpriseText.style.display = 'block';
+        }
+
+        function handleDontSurpriseButtonClick() {
+        console.log('DontSurprise button clicked');
+        surpriseText.style.display = 'none';
         }
     </script>
 </body>
